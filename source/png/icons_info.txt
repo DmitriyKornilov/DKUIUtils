@@ -1,0 +1,7 @@
+icon	autor			url
+==================================================================================================
+clock	Maxim Basinski Premium	https://www.flaticon.com/free-icon/clock_862358
+plus	Bharat Icons		https://www.flaticon.com/free-icon/plus_10397773
+minus	Bharat Icons		https://www.flaticon.com/free-icon/minus_10397750
+cross	Rakib Hassan Rahim	https://www.flaticon.com/free-icon/close_16105016
+
