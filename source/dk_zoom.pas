@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ComCtrls, DK_StrUtils;
+  ExtCtrls, ComCtrls, DK_StrUtils;
 
 type
 
@@ -37,18 +37,18 @@ var
   ZoomForm: TZoomForm;
 
   function CreateZoomControls(const AMinPercent, AMaxPercent, ACurrentPercent: Integer;
-                          const AParent: TWinControl;
+                          const APanel: TPanel;
                           const AOnZoomChange: TZoomEvent;
                           const AAlignRight: Boolean = False): TZoomForm;
 
 implementation
 
 function CreateZoomControls(const AMinPercent, AMaxPercent, ACurrentPercent: Integer;
-                        const AParent: TWinControl;
+                        const APanel: TPanel;
                         const AOnZoomChange: TZoomEvent;
                         const AAlignRight: Boolean = False): TZoomForm;
 begin
-  Result:= TZoomForm.Create(AParent);
+  Result:= TZoomForm.Create(APanel);
   Result.ZoomTrackBar.Min:= AMinPercent;
   Result.ZoomTrackBar.Max:= AMaxPercent;
   Result.ZoomTrackBar.Position:= ACurrentPercent;
@@ -56,8 +56,9 @@ begin
     Result.Align:= alRight
   else
     Result.Align:= alLeft;
-  Result.Color:= AParent.Color;
-  Result.Parent:= AParent;
+  Result.Color:= APanel.Color;
+  Result.Parent:= APanel;
+  Result.Parent.Caption:= EmptyStr;
   Result.OnZoomChange:= AOnZoomChange;
   Result.Show;
 end;

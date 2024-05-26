@@ -50,6 +50,14 @@
         <Filename Value="source\png\plus.png"/>
         <Type Value="Binary"/>
       </Item>
+      <Item>
+        <Filename Value="source\dk_filter.pas"/>
+        <UnitName Value="dk_filter"/>
+      </Item>
+      <Item>
+        <Filename Value="source\dk_filter.lfm"/>
+        <Type Value="LFM"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

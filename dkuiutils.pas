@@ -8,7 +8,7 @@ unit DKUIUtils;
 interface
 
 uses
-  DK_Progress, DK_Zoom, LazarusPackageIntf;
+  DK_Progress, DK_Zoom, DK_Filter, LazarusPackageIntf;
 
 implementation
 
