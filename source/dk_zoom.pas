@@ -15,7 +15,10 @@ type
   { TZoomForm }
 
   TZoomForm = class(TForm)
-    ImageList1: TImageList;
+    ZoomImages16: TImageList;
+    ZoomImages20: TImageList;
+    ZoomImages24: TImageList;
+    ZoomImages28: TImageList;
     ValueLabel: TLabel;
     TitleLabel: TLabel;
     ZoomInButton: TSpeedButton;
@@ -69,8 +72,14 @@ end;
 
 procedure TZoomForm.FormShow(Sender: TObject);
 begin
-  ZoomOutButton.ImageWidth:= Scale96ToScreen(16);
-  ZoomInButton.ImageWidth:= ZoomOutButton.ImageWidth;
+  case Screen.PixelsPerInch of
+    96 : ZoomOutButton.Images:= ZoomImages16;
+    120: ZoomOutButton.Images:= ZoomImages20;
+    144: ZoomOutButton.Images:= ZoomImages24;
+    168: ZoomOutButton.Images:= ZoomImages28;
+  end;
+  ZoomInButton.Images:= ZoomOutButton.Images;
+
   ValueLabel.Width:= SWidth('0000 %', ValueLabel.Font);
   SetValueLabel;
   Constraints.MinHeight:= Scale96ToScreen(18);

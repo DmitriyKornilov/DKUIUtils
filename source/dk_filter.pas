@@ -19,8 +19,11 @@ type
   TFilterForm = class(TForm)
     FilterButton: TSpeedButton;
     FilterEdit: TEdit;
+    FilterImages16: TImageList;
+    FilterImages20: TImageList;
+    FilterImages24: TImageList;
+    FilterImages28: TImageList;
     FilterLabel: TLabel;
-    FilterImages: TImageList;
     FilterTimer: TTimer;
     procedure FilterButtonClick(Sender: TObject);
     procedure FilterEditChange(Sender: TObject);
@@ -67,7 +70,13 @@ procedure TFilterForm.FormShow(Sender: TObject);
 begin
   FilterButton.Height:= FilterEdit.Height + 2;
   FilterButton.Width:= FilterButton.Height;
-  FilterButton.ImageWidth:= Scale96ToScreen(16);
+
+  case Screen.PixelsPerInch of
+    96 : FilterButton.Images:= FilterImages16;
+    120: FilterButton.Images:= FilterImages20;
+    144: FilterButton.Images:= FilterImages24;
+    168: FilterButton.Images:= FilterImages28;
+  end;
 end;
 
 procedure TFilterForm.FilterTimerTimer(Sender: TObject);

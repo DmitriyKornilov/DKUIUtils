@@ -14,12 +14,15 @@ type
   { TProgress }
 
   TProgress = class(TForm)
-    BCMaterialProgressBarMarquee1: TBCMaterialProgressBarMarquee;
-    Image1: TImage;
-    ImageList1: TImageList;
-    Label1: TLabel;
-    Label2: TLabel;
-    Panel1: TPanel;
+    ProgressBar: TBCMaterialProgressBarMarquee;
+    ProgressImage: TImage;
+    ProgressImages64: TImageList;
+    ProgressImages80: TImageList;
+    ProgressImages96: TImageList;
+    ProgressImages112: TImageList;
+    ProgressLabel1: TLabel;
+    ProgressLabel2: TLabel;
+    ProgressPanel: TPanel;
     procedure FormShow(Sender: TObject);
   private
 
@@ -37,25 +40,36 @@ implementation
 
 procedure TProgress.FormShow(Sender: TObject);
 var
-  X: Integer;
+  X, Y: Integer;
 begin
   X:= Scale96ToScreen(64);
-  Image1.Width:= X;
-  Image1.Height:= X;
-  Image1.ImageWidth:= X;
-  Height:= X + 2*Image1.Top;
+  ProgressImage.Width:= X;
+  ProgressImage.Height:= X;
+  Y:= Scale96ToScreen(6);
+  Height:= X + 2*Y + 2;
+  ProgressImage.Left:= Y;
+  ProgressImage.Top:= Y;
+
+  case Screen.PixelsPerInch of
+    96 : ProgressImage.Images:= ProgressImages64;
+    120: ProgressImage.Images:= ProgressImages80;
+    144: ProgressImage.Images:= ProgressImages96;
+    168: ProgressImage.Images:= ProgressImages112;
+  end;
+
+
   Application.ProcessMessages;
 end;
 
 procedure TProgress.WriteLine1(const ACaption: String);
 begin
-  Label1.Caption:= ACaption;
+  ProgressLabel1.Caption:= ACaption;
   Application.ProcessMessages;
 end;
 
 procedure TProgress.WriteLine2(const ACaption: String);
 begin
-  Label2.Caption:= ACaption;
+  ProgressLabel2.Caption:= ACaption;
   Application.ProcessMessages;
 end;
 
