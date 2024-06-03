@@ -1,41 +1,40 @@
 object Progress: TProgress
   Left = 610
-  Height = 81
+  Height = 65
   Top = 364
-  Width = 720
+  Width = 576
   BorderStyle = bsNone
-  ClientHeight = 81
-  ClientWidth = 720
+  ClientHeight = 65
+  ClientWidth = 576
   Color = clWindow
-  DesignTimePPI = 120
   FormStyle = fsStayOnTop
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '3.2.0.0'
   object ProgressPanel: TPanel
     Left = 0
-    Height = 81
+    Height = 65
     Top = 0
-    Width = 720
+    Width = 576
     Align = alClient
     BevelOuter = bvNone
     BorderStyle = bsSingle
-    ClientHeight = 77
-    ClientWidth = 716
+    ClientHeight = 61
+    ClientWidth = 572
     ParentBackground = False
     TabOrder = 0
     object ProgressImage: TImage
       AnchorSideLeft.Control = ProgressPanel
       AnchorSideTop.Control = ProgressPanel
       AnchorSideBottom.Side = asrBottom
-      Left = 6
-      Height = 64
-      Top = 6
-      Width = 64
+      Left = 0
+      Height = 51
+      Top = 0
+      Width = 51
       Anchors = []
-      BorderSpacing.Left = 6
-      BorderSpacing.Top = 6
-      BorderSpacing.Bottom = 6
+      BorderSpacing.Left = 5
+      BorderSpacing.Top = 5
+      BorderSpacing.Bottom = 5
       Center = True
       Images = ProgressImages64
       ParentShowHint = False
@@ -48,13 +47,13 @@ object Progress: TProgress
       AnchorSideTop.Control = ProgressImage
       AnchorSideRight.Control = ProgressPanel
       AnchorSideRight.Side = asrBottom
-      Left = 82
-      Height = 20
-      Top = 6
-      Width = 628
+      Left = 61
+      Height = 15
+      Top = 0
+      Width = 506
       Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 12
-      BorderSpacing.Right = 6
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 5
       Caption = 'Идет прогресс:'
       Font.Color = clWindowText
       ParentColor = False
@@ -67,14 +66,14 @@ object Progress: TProgress
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = ProgressPanel
       AnchorSideRight.Side = asrBottom
-      Left = 82
-      Height = 20
-      Top = 32
-      Width = 628
+      Left = 61
+      Height = 15
+      Top = 20
+      Width = 506
       Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 12
-      BorderSpacing.Top = 6
-      BorderSpacing.Right = 6
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
       Caption = 'Этап 1'
       Font.Color = clWindowText
       ParentColor = False
@@ -88,10 +87,10 @@ object Progress: TProgress
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = ProgressImage
       AnchorSideBottom.Side = asrBottom
-      Left = 82
+      Left = 61
       Height = 5
-      Top = 65
-      Width = 628
+      Top = 46
+      Width = 506
       Align = alCustom
       Anchors = [akLeft, akRight, akBottom]
       BorderWidth = 2
@@ -106,8 +105,8 @@ object Progress: TProgress
   object ProgressImages64: TImageList
     Height = 64
     Width = 64
-    Left = 224
-    Top = 13
+    Left = 179
+    Top = 10
     Bitmap = {
       4C7A0100000040000000400000000B0B00000000000078DAED5B6B5054471656
       FFE4AFFECE6FAD7D54656BB7924A95292B71B53659B3461325BEF095808A8BBA
@@ -204,8 +203,8 @@ object Progress: TProgress
   object ProgressImages80: TImageList
     Height = 80
     Width = 80
-    Left = 352
-    Top = 13
+    Left = 282
+    Top = 10
     Bitmap = {
       4C7A010000005000000050000000841100000000000078DAED5D597014E51656
       79B1CA072D1F7CF1C52A1FEEBD5CB90F827811712B1517420802B20884080848
@@ -353,8 +352,8 @@ object Progress: TProgress
   object ProgressImages96: TImageList
     Height = 96
     Width = 96
-    Left = 480
-    Top = 13
+    Left = 384
+    Top = 10
     Bitmap = {
       4C7A010000006000000060000000AA1700000000000078DAED9D79545447F6C7
       3393CC397392937F7E7F27FEFECC4C32497E732259CCA6719989A2E2164D6214
@@ -551,8 +550,8 @@ object Progress: TProgress
   object ProgressImages112: TImageList
     Height = 112
     Width = 112
-    Left = 616
-    Top = 13
+    Left = 493
+    Top = 10
     Bitmap = {
       4C7A010000007000000070000000491E00000000000078DAED5D79505457D6C7
       2C5556CDA4E69F49AA523555A9FC954C62265FD699C4C41897645C30892BB8A0

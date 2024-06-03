@@ -7,7 +7,11 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
   StdCtrls,
-  BCMaterialProgressBarMarquee;
+  BCMaterialProgressBarMarquee,
+  DK_StrUtils;
+
+const
+  CAPTION_END_SYMBOL = '...';
 
 type
 
@@ -29,6 +33,7 @@ type
   public
     procedure WriteLine1(const ACaption: String);
     procedure WriteLine2(const ACaption: String);
+    procedure Go;
   end;
 
 var
@@ -57,19 +62,25 @@ begin
     168: ProgressImage.Images:= ProgressImages112;
   end;
 
-
-  Application.ProcessMessages;
+  Go;
 end;
 
 procedure TProgress.WriteLine1(const ACaption: String);
 begin
-  ProgressLabel1.Caption:= ACaption;
-  Application.ProcessMessages;
+  ProgressLabel1.Caption:= SFit(ACaption, CAPTION_END_SYMBOL,
+                                ProgressLabel1.Width, ProgressLabel1.Font);
+  Go;
 end;
 
 procedure TProgress.WriteLine2(const ACaption: String);
 begin
-  ProgressLabel2.Caption:= ACaption;
+  ProgressLabel2.Caption:= SFit(ACaption, CAPTION_END_SYMBOL,
+                                ProgressLabel2.Width, ProgressLabel2.Font);
+  Go;
+end;
+
+procedure TProgress.Go;
+begin
   Application.ProcessMessages;
 end;
 
