@@ -7,7 +7,6 @@ object ZoomForm: TZoomForm
   Caption = 'ZoomForm'
   ClientHeight = 68
   ClientWidth = 774
-  DesignTimePPI = 120
   OnChangeBounds = FormChangeBounds
   OnShow = FormShow
   LCLVersion = '3.2.0.0'
@@ -20,7 +19,7 @@ object ZoomForm: TZoomForm
     Left = 3
     Height = 68
     Top = 0
-    Width = 63
+    Width = 52
     Anchors = [akTop, akLeft, akBottom]
     BorderSpacing.Left = 3
     Caption = 'Масштаб'
@@ -32,7 +31,7 @@ object ZoomForm: TZoomForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Owner
     Cursor = crHandPoint
-    Left = 78
+    Left = 67
     Height = 20
     Top = 0
     Width = 20
@@ -49,7 +48,7 @@ object ZoomForm: TZoomForm
     AnchorSideTop.Control = ZoomOutButton
     AnchorSideBottom.Control = ZoomOutButton
     AnchorSideBottom.Side = asrBottom
-    Left = 98
+    Left = 87
     Height = 18
     Top = 2
     Width = 150
@@ -71,7 +70,7 @@ object ZoomForm: TZoomForm
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Owner
     Cursor = crHandPoint
-    Left = 248
+    Left = 237
     Height = 20
     Top = 0
     Width = 20
@@ -87,7 +86,7 @@ object ZoomForm: TZoomForm
     AnchorSideTop.Control = Owner
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 280
+    Left = 269
     Height = 68
     Top = 0
     Width = 47

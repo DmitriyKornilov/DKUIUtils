@@ -83,6 +83,7 @@ begin
   ValueLabel.Width:= SWidth('0000 %', ValueLabel.Font);
   SetValueLabel;
   Constraints.MinHeight:= Scale96ToScreen(18);
+  Constraints.MaxHeight:= Constraints.MinHeight;
   AutoSize:= True;
 end;
 
