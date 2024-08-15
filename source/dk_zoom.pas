@@ -51,6 +51,7 @@ function CreateZoomControls(const AMinPercent, AMaxPercent, ACurrentPercent: Int
                         const AOnZoomChange: TZoomEvent;
                         const AAlignRight: Boolean = False): TZoomForm;
 begin
+  APanel.AutoSize:= True;
   Result:= TZoomForm.Create(APanel);
   Result.ZoomTrackBar.Min:= AMinPercent;
   Result.ZoomTrackBar.Max:= AMaxPercent;
