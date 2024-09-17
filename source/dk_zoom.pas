@@ -51,7 +51,7 @@ function CreateZoomControls(const AMinPercent, AMaxPercent, ACurrentPercent: Int
                         const AOnZoomChange: TZoomEvent;
                         const AAlignRight: Boolean = False): TZoomForm;
 begin
-  APanel.AutoSize:= True;
+  APanel.AutoSize:= False;
   Result:= TZoomForm.Create(APanel);
   Result.ZoomTrackBar.Min:= AMinPercent;
   Result.ZoomTrackBar.Max:= AMaxPercent;
@@ -86,10 +86,15 @@ begin
     ZoomOutButton.Images:= ZoomImages28;
   ZoomInButton.Images:= ZoomOutButton.Images;
 
+
+
   ValueLabel.Width:= SWidth('0000 %', ValueLabel.Font);
   SetValueLabel;
+  {$IFDEF WINDOWS}
+  ZoomTrackBar.BorderSpacing.Top:= Scale96ToScreen(2);
+  {$ENDIF}
   Constraints.MinHeight:= Scale96ToScreen(18);
-  n:= ZoomTrackBar.Height + Scale96ToScreen(5);
+  n:= ZoomTrackBar.Height + Scale96ToScreen(4);
   if Constraints.MinHeight<n then
     Constraints.MinHeight:= n;
   Constraints.MaxHeight:= Constraints.MinHeight;
