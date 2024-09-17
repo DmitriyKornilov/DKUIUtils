@@ -72,18 +72,26 @@ end;
 { TZoomForm }
 
 procedure TZoomForm.FormShow(Sender: TObject);
+var
+  n: Integer;
 begin
-  case Screen.PixelsPerInch of
-    96 : ZoomOutButton.Images:= ZoomImages16;
-    120: ZoomOutButton.Images:= ZoomImages20;
-    144: ZoomOutButton.Images:= ZoomImages24;
-    168: ZoomOutButton.Images:= ZoomImages28;
-  end;
+  n:= Screen.PixelsPerInch;
+  if n<108 then
+    ZoomOutButton.Images:= ZoomImages16
+  else if n<132 then
+    ZoomOutButton.Images:= ZoomImages20
+  else if n<156 then
+    ZoomOutButton.Images:= ZoomImages24
+  else
+    ZoomOutButton.Images:= ZoomImages28;
   ZoomInButton.Images:= ZoomOutButton.Images;
 
   ValueLabel.Width:= SWidth('0000 %', ValueLabel.Font);
   SetValueLabel;
   Constraints.MinHeight:= Scale96ToScreen(18);
+  n:= ZoomTrackBar.Height + Scale96ToScreen(5);
+  if Constraints.MinHeight<n then
+    Constraints.MinHeight:= n;
   Constraints.MaxHeight:= Constraints.MinHeight;
   AutoSize:= True;
 end;

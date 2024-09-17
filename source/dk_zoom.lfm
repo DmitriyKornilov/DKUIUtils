@@ -7,10 +7,9 @@ object ZoomForm: TZoomForm
   Caption = 'ZoomForm'
   ClientHeight = 68
   ClientWidth = 774
-  DesignTimePPI = 120
   OnChangeBounds = FormChangeBounds
   OnShow = FormShow
-  LCLVersion = '3.2.0.0'
+  LCLVersion = '3.4.0.0'
   Scaled = False
   object TitleLabel: TLabel
     AnchorSideLeft.Control = Owner
@@ -20,7 +19,7 @@ object ZoomForm: TZoomForm
     Left = 3
     Height = 68
     Top = 0
-    Width = 63
+    Width = 58
     Anchors = [akTop, akLeft, akBottom]
     BorderSpacing.Left = 3
     Caption = 'Масштаб'
@@ -33,7 +32,7 @@ object ZoomForm: TZoomForm
     AnchorSideTop.Control = Owner
     AnchorSideTop.Side = asrCenter
     Cursor = crHandPoint
-    Left = 78
+    Left = 73
     Height = 20
     Top = 24
     Width = 20
@@ -50,20 +49,18 @@ object ZoomForm: TZoomForm
     AnchorSideTop.Control = ZoomOutButton
     AnchorSideBottom.Control = ZoomOutButton
     AnchorSideBottom.Side = asrBottom
-    Left = 98
-    Height = 18
-    Top = 26
+    Left = 93
+    Height = 22
+    Top = 24
     Width = 150
-    AutoSize = True
     Frequency = 5
     Max = 150
     Min = 50
     OnChange = ZoomTrackBarChange
+    PageSize = 5
     Position = 100
     ShowSelRange = False
     TickStyle = tsNone
-    Anchors = [akTop, akLeft, akBottom]
-    BorderSpacing.Top = 2
     Constraints.MinWidth = 150
     TabOrder = 0
   end
@@ -73,7 +70,7 @@ object ZoomForm: TZoomForm
     AnchorSideTop.Control = Owner
     AnchorSideTop.Side = asrCenter
     Cursor = crHandPoint
-    Left = 248
+    Left = 243
     Height = 20
     Top = 24
     Width = 20
@@ -89,7 +86,7 @@ object ZoomForm: TZoomForm
     AnchorSideTop.Control = Owner
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 280
+    Left = 275
     Height = 68
     Top = 0
     Width = 47
