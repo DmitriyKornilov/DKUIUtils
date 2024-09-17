@@ -62,6 +62,10 @@
         <Filename Value="source\dk_colorlegend.pas"/>
         <UnitName Value="dk_colorlegend"/>
       </Item>
+      <Item>
+        <Filename Value="source\dk_controlview.pas"/>
+        <UnitName Value="dk_controlview"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>
