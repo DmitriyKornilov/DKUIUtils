@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
   StdCtrls,
   BCMaterialProgressBarMarquee,
-  DK_StrUtils;
+  DK_StrUtils, DK_CtrlUtils;
 
 const
   CAPTION_END_SYMBOL = '...';
@@ -54,14 +54,8 @@ begin
   Height:= X + 2*Y + 2;
   ProgressImage.Left:= Y;
   ProgressImage.Top:= Y;
-
-  case Screen.PixelsPerInch of
-    96 : ProgressImage.Images:= ProgressImages64;
-    120: ProgressImage.Images:= ProgressImages80;
-    144: ProgressImage.Images:= ProgressImages96;
-    168: ProgressImage.Images:= ProgressImages112;
-  end;
-
+  ProgressImage.Images:= ChooseImageListForScreenPPI(ProgressImages64, ProgressImages80,
+                                                     ProgressImages96, ProgressImages112);
   Go;
 end;
 

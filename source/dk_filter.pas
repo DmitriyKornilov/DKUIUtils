@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ExtCtrls;
+  ExtCtrls, DK_CtrlUtils;
 
 const
   DELAY_MILLISECONDS_DEFAULT = 1;
@@ -70,13 +70,8 @@ procedure TFilterForm.FormShow(Sender: TObject);
 begin
   FilterButton.Height:= FilterEdit.Height + 2;
   FilterButton.Width:= FilterButton.Height;
-
-  case Screen.PixelsPerInch of
-    96 : FilterButton.Images:= FilterImages16;
-    120: FilterButton.Images:= FilterImages20;
-    144: FilterButton.Images:= FilterImages24;
-    168: FilterButton.Images:= FilterImages28;
-  end;
+  FilterButton.Images:= ChooseImageListForScreenPPI(FilterImages16, FilterImages20,
+                                                    FilterImages24, FilterImages28);
 end;
 
 procedure TFilterForm.FilterTimerTimer(Sender: TObject);

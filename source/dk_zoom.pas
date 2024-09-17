@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ExtCtrls, ComCtrls, DK_StrUtils;
+  ExtCtrls, ComCtrls, DK_StrUtils, DK_CtrlUtils;
 
 type
 
@@ -75,18 +75,9 @@ procedure TZoomForm.FormShow(Sender: TObject);
 var
   n: Integer;
 begin
-  n:= Screen.PixelsPerInch;
-  if n<108 then
-    ZoomOutButton.Images:= ZoomImages16
-  else if n<132 then
-    ZoomOutButton.Images:= ZoomImages20
-  else if n<156 then
-    ZoomOutButton.Images:= ZoomImages24
-  else
-    ZoomOutButton.Images:= ZoomImages28;
+  ZoomOutButton.Images:= ChooseImageListForScreenPPI(ZoomImages16, ZoomImages20,
+                                                     ZoomImages24, ZoomImages28);
   ZoomInButton.Images:= ZoomOutButton.Images;
-
-
 
   ValueLabel.Width:= SWidth('0000 %', ValueLabel.Font);
   SetValueLabel;
