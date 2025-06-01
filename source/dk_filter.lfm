@@ -11,7 +11,6 @@ object FilterForm: TFilterForm
   DesignTimePPI = 120
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '3.2.0.0'
   object FilterLabel: TLabel
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
@@ -41,9 +40,9 @@ object FilterForm: TFilterForm
     Enabled = False
     Images = FilterImages16
     ImageIndex = 0
-    OnClick = FilterButtonClick
     ShowHint = True
     ParentShowHint = False
+    OnClick = FilterButtonClick
   end
   object FilterEdit: TEdit
     AnchorSideLeft.Control = FilterLabel
@@ -58,7 +57,6 @@ object FilterForm: TFilterForm
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Left = 6
     BorderSpacing.Right = 2
-    CharCase = ecUppercase
     TabOrder = 0
     OnChange = FilterEditChange
   end

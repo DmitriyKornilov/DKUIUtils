@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ExtCtrls, DK_CtrlUtils;
+  ExtCtrls, DK_CtrlUtils, DK_StrUtils;
 
 const
   DELAY_MILLISECONDS_DEFAULT = 1;
@@ -79,7 +79,7 @@ begin
   FilterTimer.Enabled:= False;
   if not CanApplyFilter then Exit;
   if Assigned(OnFilterChange) then
-    OnFilterChange(FilterEdit.Text);
+    OnFilterChange(SUpper(FilterEdit.Text));
 end;
 
 procedure TFilterForm.FilterEditChange(Sender: TObject);
@@ -100,7 +100,7 @@ begin
   FilterEdit.Text:= EmptyStr;
   CanStartTimer:= True;
   if Assigned(OnFilterChange) then
-    OnFilterChange(FilterEdit.Text);
+    OnFilterChange(SUpper(FilterEdit.Text));
 end;
 
 procedure TFilterForm.FormCreate(Sender: TObject);
