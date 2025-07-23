@@ -52,7 +52,7 @@
       </Item>
       <Item>
         <Filename Value="source\dk_filter.pas"/>
-        <UnitName Value="dk_filter"/>
+        <UnitName Value="DK_Filter"/>
       </Item>
       <Item>
         <Filename Value="source\dk_filter.lfm"/>
@@ -60,10 +60,25 @@
       </Item>
       <Item>
         <Filename Value="source\dk_colorlegend.pas"/>
-        <UnitName Value="dk_colorlegend"/>
+        <UnitName Value="DK_ColorLegend"/>
+      </Item>
+      <Item>
+        <Filename Value="source\dk_dropfilter.pas"/>
+        <UnitName Value="dk_dropfilter"/>
+      </Item>
+      <Item>
+        <Filename Value="source\dk_dropfilter.lfm"/>
+        <Type Value="LFM"/>
+      </Item>
+      <Item>
+        <Filename Value="source\ufilterimages.pas"/>
+        <UnitName Value="ufilterimages"/>
       </Item>
     </Files>
     <RequiredPkgs>
+      <Item>
+        <PackageName Value="DKVTUtils"/>
+      </Item>
       <Item>
         <PackageName Value="bgracontrols"/>
       </Item>

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ExtCtrls, DK_CtrlUtils, DK_StrUtils;
+  ExtCtrls, DK_StrUtils, UFilterImages;
 
 const
   DELAY_MILLISECONDS_DEFAULT = 1;
@@ -14,48 +14,46 @@ const
 type
   TFilterEvent = procedure(const AFilterString: String) of object;
 
-  { TFilterForm }
+  { TDKFilter }
 
-  TFilterForm = class(TForm)
+  TDKFilter = class(TForm)
     FilterButton: TSpeedButton;
     FilterEdit: TEdit;
-    FilterImages16: TImageList;
-    FilterImages20: TImageList;
-    FilterImages24: TImageList;
-    FilterImages28: TImageList;
     FilterLabel: TLabel;
     FilterTimer: TTimer;
     procedure FilterButtonClick(Sender: TObject);
     procedure FilterEditChange(Sender: TObject);
     procedure FilterTimerTimer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     OnFilterChange: TFilterEvent;
     CanApplyFilter: Boolean;
     CanStartTimer: Boolean;
+    Images: TFilterImages;
   public
 
   end;
 
 var
-  FilterForm: TFilterForm;
+  DKFilter: TDKFilter;
 
-  function CreateFilterControls(const ACaption: String;
+  function DKFilterCreate(const ACaption: String;
         const APanel: TPanel;
         const AOnFilterChange: TFilterEvent;
-        const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT): TFilterForm;
+        const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT): TDKFilter;
 
 implementation
 
 {$R *.lfm}
 
-function CreateFilterControls(const ACaption: String;
+function DKFilterCreate(const ACaption: String;
         const APanel: TPanel;
         const AOnFilterChange: TFilterEvent;
-        const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT): TFilterForm;
+        const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT): TDKFilter;
 begin
-  Result:= TFilterForm.Create(APanel);
+  Result:= TDKFilter.Create(APanel);
   Result.FilterLabel.Caption:= ACaption;
   Result.Parent:= APanel;
   Result.Parent.Caption:= EmptyStr;
@@ -64,17 +62,28 @@ begin
   Result.Show;
 end;
 
-{ TFilterForm }
+{ TDKFilter }
 
-procedure TFilterForm.FormShow(Sender: TObject);
+procedure TDKFilter.FormCreate(Sender: TObject);
+begin
+  Images:= TFilterImages.Create(nil);
+  CanApplyFilter:= False;
+  CanStartTimer:= True;
+end;
+
+procedure TDKFilter.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(Images);
+end;
+
+procedure TDKFilter.FormShow(Sender: TObject);
 begin
   FilterButton.Height:= FilterEdit.Height + 2;
   FilterButton.Width:= FilterButton.Height;
-  FilterButton.Images:= ChooseImageListForScreenPPI(FilterImages16, FilterImages20,
-                                                    FilterImages24, FilterImages28);
+  FilterButton.Images:= Images.ForScreenPPI;
 end;
 
-procedure TFilterForm.FilterTimerTimer(Sender: TObject);
+procedure TDKFilter.FilterTimerTimer(Sender: TObject);
 begin
   FilterTimer.Enabled:= False;
   if not CanApplyFilter then Exit;
@@ -82,7 +91,7 @@ begin
     OnFilterChange(SUpper(FilterEdit.Text));
 end;
 
-procedure TFilterForm.FilterEditChange(Sender: TObject);
+procedure TDKFilter.FilterEditChange(Sender: TObject);
 begin
   FilterButton.Enabled:= FilterEdit.Text<>EmptyStr;
   if not CanStartTimer then Exit;
@@ -94,19 +103,13 @@ begin
   CanApplyFilter:= True;
 end;
 
-procedure TFilterForm.FilterButtonClick(Sender: TObject);
+procedure TDKFilter.FilterButtonClick(Sender: TObject);
 begin
   CanStartTimer:= False;
   FilterEdit.Text:= EmptyStr;
   CanStartTimer:= True;
   if Assigned(OnFilterChange) then
     OnFilterChange(SUpper(FilterEdit.Text));
-end;
-
-procedure TFilterForm.FormCreate(Sender: TObject);
-begin
-  CanApplyFilter:= False;
-  CanStartTimer:= True;
 end;
 
 end.
