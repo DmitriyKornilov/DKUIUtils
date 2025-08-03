@@ -4,6 +4,7 @@ object DKFilter: TDKFilter
   Top = 283
   Width = 600
   Align = alClient
+  AutoSize = True
   BorderStyle = bsNone
   Caption = 'DKFilter'
   ClientHeight = 70
@@ -58,6 +59,7 @@ object DKFilter: TDKFilter
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Left = 6
     BorderSpacing.Right = 2
+    Constraints.MinWidth = 100
     TabOrder = 0
     OnChange = FilterEditChange
   end

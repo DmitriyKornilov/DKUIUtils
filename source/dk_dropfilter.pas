@@ -48,6 +48,7 @@ begin
   Result:= TDKDropFilter.Create(APanel);
   Result.FilterLabel.Caption:= ACaption;
   Result.Parent:= APanel;
+  Result.Parent.AutoSize:= True;
   Result.Parent.Caption:= EmptyStr;
   Result.OnFilterChange:= AOnFilterChange;
   Result.Show;

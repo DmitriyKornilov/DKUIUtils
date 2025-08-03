@@ -4,6 +4,7 @@ object DKDropFilter: TDKDropFilter
   Top = 250
   Width = 600
   Align = alClient
+  AutoSize = True
   BorderStyle = bsNone
   Caption = 'DKDropFilter'
   ClientHeight = 70
@@ -107,6 +108,7 @@ object DKDropFilter: TDKDropFilter
     BorderSpacing.Left = 6
     BorderSpacing.Right = 2
     Color = clNone
+    Constraints.MinWidth = 100
     DropDownWidth = 16
     DropDownArrowSize = 8
     GlobalOpacity = 255
