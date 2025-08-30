@@ -79,7 +79,10 @@ end;
 
 procedure TDKFilter.FormShow(Sender: TObject);
 begin
-  FilterButton.Height:= FilterEdit.Height + 2;
+  FilterButton.Height:= FilterEdit.Height;
+  {$IFDEF WINDOWS}
+  FilterButton.Height:= FilterButton.Height + 2;
+  {$ENDIF}
   FilterButton.Width:= FilterButton.Height;
   FilterButton.Images:= Images.ForScreenPPI;
 end;
