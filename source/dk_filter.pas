@@ -42,6 +42,7 @@ var
   function DKFilterCreate(const ACaption: String;
         const APanel: TPanel;
         const AOnFilterChange: TFilterEvent;
+        const AWidth: Integer = -1;
         const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT): TDKFilter;
 
 implementation
@@ -51,13 +52,20 @@ implementation
 function DKFilterCreate(const ACaption: String;
         const APanel: TPanel;
         const AOnFilterChange: TFilterEvent;
+        const AWidth: Integer = -1;
         const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT): TDKFilter;
 begin
   Result:= TDKFilter.Create(APanel);
-  Result.FilterLabel.Caption:= ACaption;
   Result.Parent:= APanel;
-  Result.Parent.AutoSize:= True;
   Result.Parent.Caption:= EmptyStr;
+  if AWidth>0 then
+  begin
+    Result.Parent.AutoSize:= False;
+    Result.Parent.Width:= AWidth;
+  end
+  else
+    Result.Parent.AutoSize:= True;
+  Result.FilterLabel.Caption:= ACaption;
   Result.OnFilterChange:= AOnFilterChange;
   Result.FilterTimer.Interval:= AUpdateDelayMilliSeconds;
   Result.Show;

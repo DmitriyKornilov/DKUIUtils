@@ -35,7 +35,8 @@ var
 
   function DKDropFilterCreate(const ACaption: String;
                         const APanel: TPanel;
-                        const AOnFilterChange: TDropFilterEvent): TDKDropFilter;
+                        const AOnFilterChange: TDropFilterEvent;
+                        const AWidth: Integer = -1): TDKDropFilter;
 
 implementation
 
@@ -43,13 +44,20 @@ implementation
 
 function DKDropFilterCreate(const ACaption: String;
                         const APanel: TPanel;
-                        const AOnFilterChange: TDropFilterEvent): TDKDropFilter;
+                        const AOnFilterChange: TDropFilterEvent;
+                        const AWidth: Integer = -1): TDKDropFilter;
 begin
   Result:= TDKDropFilter.Create(APanel);
-  Result.FilterLabel.Caption:= ACaption;
   Result.Parent:= APanel;
-  Result.Parent.AutoSize:= True;
   Result.Parent.Caption:= EmptyStr;
+  if AWidth>0 then
+  begin
+    Result.Parent.AutoSize:= False;
+    Result.Parent.Width:= AWidth;
+  end
+  else
+    Result.Parent.AutoSize:= True;
+  Result.FilterLabel.Caption:= ACaption;
   Result.OnFilterChange:= AOnFilterChange;
   Result.Show;
 end;
