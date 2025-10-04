@@ -38,6 +38,8 @@ type
 
     procedure SetFilterEnabled(const AValue: Boolean);
     procedure SetFilterString(const AValue: String);
+
+    procedure DoChange;
   public
     procedure Focus;
     procedure Clear(const ADoOnChangeEvent: Boolean = True);
@@ -132,6 +134,8 @@ procedure TDKFilter.SetFilterString(const AValue: String);
 begin
   if SSame(FilterEdit.Text, AValue) then Exit;
   FilterEdit.Text:= AValue;
+  FilterTimer.Enabled:= False;
+  DoChange;
 end;
 
 procedure TDKFilter.Focus;
@@ -139,12 +143,9 @@ begin
   FilterEdit.SetFocus;
 end;
 
-procedure TDKFilter.Clear(const ADoOnChangeEvent: Boolean = True);
+procedure TDKFilter.DoChange;
 begin
-  CanStartTimer:= False;
-  FilterEdit.Text:= EmptyStr;
-  CanStartTimer:= True;
-  if ADoOnChangeEvent and Assigned(OnFilterChange) then
+  if Assigned(OnFilterChange) then
     OnFilterChange(SUpper(FilterEdit.Text));
 end;
 
@@ -152,8 +153,7 @@ procedure TDKFilter.FilterTimerTimer(Sender: TObject);
 begin
   FilterTimer.Enabled:= False;
   if not CanApplyFilter then Exit;
-  if Assigned(OnFilterChange) then
-    OnFilterChange(SUpper(FilterEdit.Text));
+  DoChange;
 end;
 
 procedure TDKFilter.FilterEditChange(Sender: TObject);
@@ -166,6 +166,14 @@ begin
     FilterTimer.Enabled:= False;
   FilterTimer.Enabled:= True;
   CanApplyFilter:= True;
+end;
+
+procedure TDKFilter.Clear(const ADoOnChangeEvent: Boolean = True);
+begin
+  CanStartTimer:= False;
+  FilterEdit.Text:= EmptyStr;
+  CanStartTimer:= True;
+  if ADoOnChangeEvent then DoChange;
 end;
 
 procedure TDKFilter.FilterButtonClick(Sender: TObject);
