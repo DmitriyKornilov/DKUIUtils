@@ -33,7 +33,8 @@ type
     CanStartTimer: Boolean;
     Images: TFilterImages;
   public
-
+    procedure Focus;
+    procedure Clear(const ADoOnChangeEvent: Boolean = True);
   end;
 
 var
@@ -43,7 +44,8 @@ var
         const APanel: TPanel;
         const AOnFilterChange: TFilterEvent;
         const AWidth: Integer = -1;
-        const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT): TDKFilter;
+        const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT;
+        const AOnFilterKeyDown: TKeyEvent = nil): TDKFilter;
 
 implementation
 
@@ -53,7 +55,8 @@ function DKFilterCreate(const ACaption: String;
         const APanel: TPanel;
         const AOnFilterChange: TFilterEvent;
         const AWidth: Integer = -1;
-        const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT): TDKFilter;
+        const AUpdateDelayMilliSeconds: Integer = DELAY_MILLISECONDS_DEFAULT;
+        const AOnFilterKeyDown: TKeyEvent = nil): TDKFilter;
 begin
   Result:= TDKFilter.Create(APanel);
   Result.Parent:= APanel;
@@ -67,6 +70,8 @@ begin
     Result.Parent.AutoSize:= True;
   Result.FilterLabel.Caption:= ACaption;
   Result.OnFilterChange:= AOnFilterChange;
+  if Assigned(AOnFilterKeyDown) then
+    Result.FilterEdit.OnKeyDown:= AOnFilterKeyDown;
   Result.FilterTimer.Interval:= AUpdateDelayMilliSeconds;
   Result.Show;
 end;
@@ -95,6 +100,20 @@ begin
   FilterButton.Images:= Images.ForScreenPPI;
 end;
 
+procedure TDKFilter.Focus;
+begin
+  FilterEdit.SetFocus;
+end;
+
+procedure TDKFilter.Clear(const ADoOnChangeEvent: Boolean = True);
+begin
+  CanStartTimer:= False;
+  FilterEdit.Text:= EmptyStr;
+  CanStartTimer:= True;
+  if ADoOnChangeEvent and Assigned(OnFilterChange) then
+    OnFilterChange(SUpper(FilterEdit.Text));
+end;
+
 procedure TDKFilter.FilterTimerTimer(Sender: TObject);
 begin
   FilterTimer.Enabled:= False;
@@ -117,11 +136,7 @@ end;
 
 procedure TDKFilter.FilterButtonClick(Sender: TObject);
 begin
-  CanStartTimer:= False;
-  FilterEdit.Text:= EmptyStr;
-  CanStartTimer:= True;
-  if Assigned(OnFilterChange) then
-    OnFilterChange(SUpper(FilterEdit.Text));
+  Clear;
 end;
 
 end.

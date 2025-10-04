@@ -1,14 +1,15 @@
 object DKFilter: TDKFilter
   Left = 698
-  Height = 56
+  Height = 70
   Top = 283
-  Width = 400
+  Width = 500
   Align = alClient
   AutoSize = True
   BorderStyle = bsNone
   Caption = 'DKFilter'
-  ClientHeight = 56
-  ClientWidth = 400
+  ClientHeight = 70
+  ClientWidth = 500
+  DesignTimePPI = 120
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
@@ -17,9 +18,9 @@ object DKFilter: TDKFilter
     AnchorSideTop.Control = Owner
     AnchorSideTop.Side = asrCenter
     Left = 2
-    Height = 15
-    Top = 21
-    Width = 61
+    Height = 20
+    Top = 25
+    Width = 75
     BorderSpacing.Left = 2
     Caption = '<Caption>:'
     ParentColor = False
@@ -30,10 +31,10 @@ object DKFilter: TDKFilter
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Cursor = crHandPoint
-    Left = 373
+    Left = 473
     Height = 25
     Hint = 'Очистить фильтр'
-    Top = 16
+    Top = 23
     Width = 25
     Align = alCustom
     Anchors = [akTop, akRight]
@@ -51,21 +52,21 @@ object DKFilter: TDKFilter
     AnchorSideTop.Control = FilterLabel
     AnchorSideTop.Side = asrCenter
     AnchorSideRight.Control = FilterButton
-    Left = 68
-    Height = 23
-    Top = 17
-    Width = 303
+    Left = 85
+    Height = 28
+    Top = 21
+    Width = 386
     Anchors = [akTop, akLeft, akRight]
-    BorderSpacing.Left = 5
+    BorderSpacing.Left = 8
     BorderSpacing.Right = 2
-    Constraints.MinWidth = 80
+    Constraints.MinWidth = 100
     TabOrder = 0
     OnChange = FilterEditChange
   end
   object FilterTimer: TTimer
     Enabled = False
     OnTimer = FilterTimerTimer
-    Left = 96
-    Top = 6
+    Left = 120
+    Top = 8
   end
 end
