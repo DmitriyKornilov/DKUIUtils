@@ -32,9 +32,18 @@ type
     CanApplyFilter: Boolean;
     CanStartTimer: Boolean;
     Images: TFilterImages;
+
+    function GetFilterEnabled: Boolean;
+    function GetFilterString: String;
+
+    procedure SetFilterEnabled(const AValue: Boolean);
+    procedure SetFilterString(const AValue: String);
   public
     procedure Focus;
     procedure Clear(const ADoOnChangeEvent: Boolean = True);
+
+    property FilterEnabled: Boolean read GetFilterEnabled write SetFilterEnabled;
+    property FilterString: String read GetFilterString write SetFilterString;
   end;
 
 var
@@ -100,6 +109,31 @@ begin
   FilterButton.Images:= Images.ForScreenPPI;
 end;
 
+function TDKFilter.GetFilterEnabled: Boolean;
+begin
+  Result:= FilterEdit.Enabled;
+end;
+
+function TDKFilter.GetFilterString: String;
+begin
+  Result:= FilterEdit.Text;
+end;
+
+procedure TDKFilter.SetFilterEnabled(const AValue: Boolean);
+begin
+  FilterEdit.Enabled:= AValue;
+  if AValue then
+    FilterButton.Enabled:= not SEmpty(FilterEdit.Text)
+  else
+    FilterButton.Enabled:= False;
+end;
+
+procedure TDKFilter.SetFilterString(const AValue: String);
+begin
+  if SSame(FilterEdit.Text, AValue) then Exit;
+  FilterEdit.Text:= AValue;
+end;
+
 procedure TDKFilter.Focus;
 begin
   FilterEdit.SetFocus;
@@ -124,7 +158,7 @@ end;
 
 procedure TDKFilter.FilterEditChange(Sender: TObject);
 begin
-  FilterButton.Enabled:= FilterEdit.Text<>EmptyStr;
+  FilterButton.Enabled:= not SEmpty(FilterEdit.Text);
   if not CanStartTimer then Exit;
 
   CanApplyFilter:= False;
